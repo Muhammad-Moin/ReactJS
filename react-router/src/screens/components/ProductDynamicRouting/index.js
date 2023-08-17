@@ -1,28 +1,30 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const DynamicRouting = () => {
   const params = useParams();
   const [productId, setProductByID] = useState({});
-  const [error, setError] = useState("");
-  console.log(params);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://fakestoreapi.com/products/${params.id}`
-        );
-        console.log(response.data);
-        setProductByID(response.data);
-      } catch (error) {
-        setError(error);
-      }
-    };
-
-    fetchData();
-    return () => {};
+  const dataFetchedRef = useRef(false);  
+  
+  useEffect(() => {    
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true
+    fetchData()
+    
   }, [params.id]); // The empty array means the effect runs only once, on mount.
+
+  const fetchData =  async() => {
+    try {
+      const response =await axios.get(
+        `https://fakestoreapi.com/products/${params.id}`
+      );      
+      setProductByID(response.data);
+      console.log("response.data",response.data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -36,7 +38,7 @@ const DynamicRouting = () => {
           margin: 55,
         }}
       >
-        <img src={productId.image} width={150} height={150} />
+        <img src={productId?.image} width={150} height={150} alt="productImage" />
         <h3>
           Product Title
           <br />
