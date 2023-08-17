@@ -22,7 +22,7 @@ const DynamicRouting = () => {
 
     fetchData();
     return () => {};
-  }, []); // The empty array means the effect runs only once, on mount.
+  }, [params.id]); // The empty array means the effect runs only once, on mount.
 
   return (
     <>
