@@ -5,3 +5,4 @@ export { default as ProductRouting } from './ProductRouting/index';
 export { default as Header } from './Header/index';
 export { default as About } from './About/index';
 export { default as Layout } from './Layout/index';
+export { default as Income } from './Income/index';
