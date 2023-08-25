@@ -1,0 +1,14 @@
+export {default as MainPage} from './MainPage/index';
+export {default as Home} from './Home/index';
+export {default as Dashboard} from './Dashboard/index';
+export {default as Signin} from './Authentication/Signin/index';
+export {default as Signup} from './Authentication/Singup/index';
+export {default as MyDashboard} from './Dashboard';
+export {default as MyBlaqueMovement} from './MyBlaqueMovement';
+export {default as TalkToACoach} from './TalkToACoach';
+export {default as MyProgress} from './MyProgress';
+export {default as Calendar} from './Calendar';
+export {default as GroupChat} from './GroupChat';
+export {default as MyProfile} from './MyProfile';
+export {default as BlaqueNewsletter} from './BlaqueNewsletter';
+export {default as Settings} from './Settings';
