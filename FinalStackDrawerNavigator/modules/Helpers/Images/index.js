@@ -19,4 +19,7 @@ export const AppImage = {
   notificationProfileIcon: require('./notificationProfileIcon.png'),
   arrowIcon: require('./arrow.png'),
   dashboardRecommendation: require('./dashboardRecommendation.png'),
+  sliderImage01: require('./sliderImage01.png'),
+  sliderImage02: require('./sliderImage02.png'),
+  sliderImage03: require('./sliderImage03.png'),
 };

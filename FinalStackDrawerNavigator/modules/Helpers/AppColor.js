@@ -9,4 +9,6 @@ export const AppColor = {
   drawerBackgroundColor: '#403935',
   white: '#fff',
   borderBottomColor: '#4C443F',
+  inactiveStrokeColor: '#EFEBE6',
+  progressBarBackColor: '#F4F3EE',
 };

@@ -14,6 +14,7 @@ import {AppImage} from '../../Helpers/Images';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import {CircularProgressBase} from 'react-native-circular-progress-indicator';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {AppColor} from '../../Helpers/AppColor';
 
 function TodoComponentHeader({todoTitle, date, style}) {
   return (
@@ -57,7 +58,6 @@ function TodoComponent({title, styles, spinnervalue}) {
 const todoComponentStyles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#F4F3EE',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -66,7 +66,7 @@ const todoComponentStyles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
-    color: '#2B2623',
+    color: AppColor.primaryColor,
     marginLeft: 17,
   },
   image: {
@@ -86,14 +86,14 @@ function ProgressBar({progressValue, styles, title}) {
       <CircularProgress
         {...props}
         value={progressValue}
-        activeStrokeColor={'#C7922C'}
-        inActiveStrokeColor={'#EFEBE6'}
-        progressValueColor={'#2B2623'}
+        activeStrokeColor={AppColor.orangeColor}
+        inActiveStrokeColor={AppColor.inactiveStrokeColor}
+        progressValueColor={AppColor.primaryColor}
         valueSuffix={'%'}
         radius={50}
         titleFontSize={12}
         title={title}
-        titleColor={'#2B2623'}
+        titleColor={AppColor.primaryColor}
         progressValueFontSize={16}
       />
     </View>
@@ -103,32 +103,32 @@ const progressBarStyle = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 10,
-    backgroundColor: '#F4F3EE',
+    backgroundColor: AppColor.progressBarBackColor,
     paddingHorizontal: 30,
-    // justifyContent: 'center',
     alignItems: 'center',
-    // // width: 130,
   },
 });
 
-const Item = ({title}) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
+const Slider = ({source}) => (
+  <TouchableOpacity activeOpacity={0.7}>
+    <View>
+      <Image
+        style={{width: 300, height: 150, resizeMode: 'stretch'}}
+        source={source}
+      />
+    </View>
+  </TouchableOpacity>
 );
 export default function Home({navigation}) {
   const DATA = [
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
+      img: AppImage.sliderImage01,
     },
     {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
+      img: AppImage.sliderImage02,
     },
     {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
+      img: AppImage.sliderImage03,
     },
   ];
 
@@ -217,14 +217,12 @@ export default function Home({navigation}) {
           todoTitle={'alternatives'}
           // date={'may 19 2021'}
         />
-        <View>
-          <FlatList
-            horizontal
-            data={DATA}
-            renderItem={({item}) => <Item title={item.title} />}
-            keyExtractor={item => item.id}
-          />
-        </View>
+        <FlatList
+          horizontal
+          data={DATA}
+          renderItem={({item}) => <Slider source={item.img} />}
+          keyExtractor={item => item.id}
+        />
       </ScrollView>
     </SafeAreaView>
   );
