@@ -217,13 +217,14 @@ export default function Home({navigation}) {
           todoTitle={'alternatives'}
           // date={'may 19 2021'}
         />
-        {/* <View>
+        <View>
           <FlatList
+            horizontal
             data={DATA}
             renderItem={({item}) => <Item title={item.title} />}
             keyExtractor={item => item.id}
           />
-        </View> */}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
