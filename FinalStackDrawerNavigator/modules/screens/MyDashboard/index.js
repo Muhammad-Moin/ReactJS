@@ -149,7 +149,7 @@ export default function Home({navigation}) {
       </View>
       <ScrollView>
         <TodoComponentHeader
-          style={{marginTop: 2}}
+          style={{marginTop: 3}}
           todoTitle={'today’s to do list'}
           date={'may 19 2021'}
         />
@@ -175,7 +175,7 @@ export default function Home({navigation}) {
           }
         />
         <TodoComponentHeader
-          style={{marginTop: 2}}
+          style={{marginTop: 3}}
           todoTitle={'My BLAQUE Movement Consistency'}
           date={'may 19 2021'}
         />
@@ -198,7 +198,7 @@ export default function Home({navigation}) {
           />
         </View>
         <TodoComponentHeader
-          style={{marginTop: 4}}
+          style={{marginTop: 3}}
           todoTitle={'Recommendation for today'}
           // date={'may 19 2021'}
         />
@@ -213,16 +213,18 @@ export default function Home({navigation}) {
           source={AppImage.dashboardRecommendation}
         />
         <TodoComponentHeader
-          style={{marginTop: 2}}
+          style={{marginTop: 3}}
           todoTitle={'alternatives'}
           // date={'may 19 2021'}
         />
-        <FlatList
-          horizontal
-          data={DATA}
-          renderItem={({item}) => <Slider source={item.img} />}
-          keyExtractor={item => item.id}
-        />
+        <View style={{backgroundColor: 'white', marginTop: 3}}>
+          <FlatList
+            horizontal
+            data={DATA}
+            renderItem={({item}) => <Slider source={item.img} />}
+            keyExtractor={item => item.id}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
