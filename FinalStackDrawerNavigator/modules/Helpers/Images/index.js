@@ -22,4 +22,6 @@ export const AppImage = {
   sliderImage01: require('./sliderImage01.png'),
   sliderImage02: require('./sliderImage02.png'),
   sliderImage03: require('./sliderImage03.png'),
+  back: require('./back.png'),
+  next: require('./next.png'),
 };

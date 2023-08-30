@@ -6,6 +6,7 @@ import {
   Text,
   ScrollView,
   FlatList,
+  TextInput,
 } from 'react-native';
 import React from 'react';
 import HeaderComponent from '../../components/HeaderComponent';
@@ -59,6 +60,7 @@ const todoComponentStyles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    backgroundColor: AppColor.progressBarBackColor,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
@@ -109,16 +111,18 @@ const progressBarStyle = StyleSheet.create({
   },
 });
 
-const Slider = ({source}) => (
-  <TouchableOpacity activeOpacity={0.7}>
-    <View>
-      <Image
-        style={{width: 300, height: 150, resizeMode: 'stretch'}}
-        source={source}
-      />
-    </View>
-  </TouchableOpacity>
-);
+const Slider = ({source, key}) => {
+  return (
+    <TouchableOpacity key={key} activeOpacity={0.7}>
+      <View>
+        <Image
+          style={{width: 300, height: 150, resizeMode: 'stretch'}}
+          source={source}
+        />
+      </View>
+    </TouchableOpacity>
+  );
+};
 export default function Home({navigation}) {
   const DATA = [
     {
@@ -217,12 +221,14 @@ export default function Home({navigation}) {
           todoTitle={'alternatives'}
           // date={'may 19 2021'}
         />
-        <View style={{backgroundColor: 'white', marginTop: 3}}>
+
+        <View style={{backgroundColor: AppColor.white, marginTop: 3}}>
           <FlatList
             horizontal
             data={DATA}
-            renderItem={({item}) => <Slider source={item.img} />}
-            keyExtractor={item => item.id}
+            renderItem={({item, index}) => {
+              return <Slider keys={index} source={item.img} />;
+            }}
           />
         </View>
       </ScrollView>

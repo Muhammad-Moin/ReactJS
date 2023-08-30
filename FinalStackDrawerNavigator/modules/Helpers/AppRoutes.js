@@ -4,4 +4,5 @@ export const AppRoutes = {
   Dashboard: 'Dashboard',
   Signin: 'Signin',
   Signup: 'Signup',
+  Setting: 'Setting',
 };

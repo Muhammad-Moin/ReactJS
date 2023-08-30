@@ -33,10 +33,12 @@ export default function HeaderComponent({onPressNotification}) {
 
 const styles = StyleSheet.create({
   container: {
+    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    marginTop: 27,
+    marginTop: 20,
+    elevation: 0,
   },
   btn: {
     borderRadius: 32,

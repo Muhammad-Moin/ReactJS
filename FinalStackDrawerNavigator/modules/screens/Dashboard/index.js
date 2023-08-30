@@ -1,4 +1,11 @@
-import {StyleSheet, View, Image, Text} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {AppRoutes} from '../../Helpers/AppRoutes';
@@ -18,6 +25,9 @@ import MyDashboard from '../MyDashboard';
 import {AppFonts} from '../../Helpers/AppFonts';
 import LeftDrawerComponent from '../../components/LeftDrawerComponent';
 import RightDrawerComponent from '../../components/RightDrawerComponent';
+import {AppImage} from '../../Helpers/Images';
+import HeaderComponent from '../../components/HeaderComponent';
+import {useNavigation} from '@react-navigation/native';
 
 const LeftDrawer = createDrawerNavigator();
 const RightDrawer = createDrawerNavigator();
@@ -89,8 +99,10 @@ const LeftDrawerScreen = ({navigation}) => {
       },
     },
   };
+
   return (
     <LeftDrawer.Navigator
+      initialRouteName="Settings"
       screenOptions={{
         // drawerPosition: 'right',
         drawerActiveBackgroundColor: AppColor.checkColor,
@@ -153,4 +165,12 @@ export default function Dashboard({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  headerLeft: {
+    marginLeft: 20,
+  },
+
+  headerRight: {
+    marginRight: 20,
+  },
+});
