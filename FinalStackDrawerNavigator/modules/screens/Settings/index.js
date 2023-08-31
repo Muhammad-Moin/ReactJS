@@ -16,47 +16,61 @@ import {AppImage} from '../../Helpers/Images';
 
 export default function Settings({navigation}) {
   const {height, width} = Dimensions.get('window');
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [next, setNext] = useState(null);
   const [back, setBack] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(1);
+  const [totalStep, setTotalStep] = useState([]);
 
   const data = [
     {
-      number: 1,
+      number: 0,
       text: 'She doesn’t study German on Monday.',
     },
     {
-      number: 2,
+      number: 1,
       text: 'Does she live in Paris?',
     },
     {
-      number: 3,
+      number: 2,
       text: 'He doesn’t teach math.',
     },
     {
-      number: 4,
+      number: 3,
       text: 'Cats hate water.',
     },
     {
-      number: 5,
+      number: 4,
       text: 'Every child likes an ice cream.',
     },
     {
-      number: 6,
+      number: 5,
       text: 'My brother takes out the trash.',
     },
+    {
+      number: 6,
+      text: 'My Sister takes out the trash.',
+    },
+    {
+      number: 7,
+      text: 'Mother takes out the trash.',
+    },
   ];
+
+  const array = [];
   const handleNext = () => {
-    console.log(currentIndex, data.length);
+    for (let i = 0; i <= currentIndex + 1; i++) {
+      array.push(i);
+    }
     if (currentIndex !== data.length - 1) {
       setCurrentIndex(currentIndex => currentIndex + 1);
+      setTotalStep(array);
     }
   };
 
   const handleBack = () => {
-    console.log(currentIndex);
     if (currentIndex >= 1) {
       setCurrentIndex(currentIndex => currentIndex - 1);
+      totalStep.pop();
     }
   };
 
@@ -72,19 +86,35 @@ export default function Settings({navigation}) {
       <View style={styles.pagination}>
         <View
           style={{
-            marginHorizontal: 37,
             marginTop: 30,
           }}>
-          {/* <Text style={{textAlign: 'center'}}>{data[currentIndex]?.text}</Text> */}
           <FlatList
             data={data}
             horizontal
             showsHorizontalScrollIndicator={false}
             pagingEnabled
+            onMomentumScrollEnd={event => {
+              const index = Math.floor(
+                Math.floor(event.nativeEvent.contentOffset.x) /
+                  Math.floor(event.nativeEvent.layoutMeasurement.width),
+              );
+              setCurrentIndex(index);
+            }}
             renderItem={({item}) => (
-              <View style={{backgroundColor: 'red', height: 100 / 2}}>
-                <TouchableOpacity>
-                  <Text style={{width: '20%'}}>{item.text}</Text>
+              <View
+                style={{
+                  height: height / 6,
+                  width: width,
+                }}>
+                <TouchableOpacity
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: height / 6,
+                  }}>
+                  <Text style={{textAlign: 'center'}}>
+                    {data[currentIndex]?.text}
+                  </Text>
                 </TouchableOpacity>
               </View>
             )}
@@ -138,6 +168,28 @@ export default function Settings({navigation}) {
             <Image style={{width: 14, height: 14}} source={AppImage.next} />
           </TouchableOpacity>
         </View>
+        <View
+          style={{
+            alignItems: 'center',
+            flexDirection: 'row',
+            marginHorizontal: 10,
+            marginTop: 30,
+          }}>
+          {data.map((_, index) => {
+            return (
+              <View
+                key={index}
+                style={{
+                  marginLeft: index !== 0 ? 10 : 0, // Adjust margin for the first item
+                  width: 32,
+                  opacity: index / 10,
+                  backgroundColor:
+                    index + 1 <= totalStep?.length ? '#C6B896' : '#fff',
+                  height: 10,
+                }}></View>
+            );
+          })}
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -146,6 +198,5 @@ export default function Settings({navigation}) {
 const styles = StyleSheet.create({
   pagination: {
     flex: 1,
-    backgroundColor: 'pink',
   },
 });
